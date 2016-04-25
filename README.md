@@ -3,6 +3,7 @@ Easy implements Header &amp; Footer view, With least modification
 
 ## feature
 Easy implements Header &amp; Footer view, With least modification
+
 非常简单的实现Recyclerview添加HeaderView和FooterView，
 * 1, No need change anyting with your target adapter
 
