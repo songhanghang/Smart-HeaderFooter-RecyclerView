@@ -24,9 +24,10 @@ Easy implements Header &amp; Footer view, With least modification
 ## usage
 
 ```java
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-            SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(targetAdapter, gridLayoutManager);
-            smartRecyclerAdapter.setFooterView(footerView);
-            smartRecyclerAdapter.setHeaderView(headerView);
-            recyclerView.setAdapter(smartRecyclerAdapter);
+      RecyclerView.Adapter targetAdapter = new RecyclerView.Adapter() { ... };
+      GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+      SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(targetAdapter, gridLayoutManager);
+      smartRecyclerAdapter.setFooterView(footerView);
+      smartRecyclerAdapter.setHeaderView(headerView);
+      recyclerView.setAdapter(smartRecyclerAdapter);
 ```
