@@ -19,7 +19,7 @@ Easy implements Header &amp; Footer view, Support Liner、Grid、StaggeredLayout
      支持 LinearLayoutManager & GridLayoutManager & StaggeredLayoutManager 三种布局管理器
 
 ## Screenshot
-![Renderings](https://github.com/songhanghang/SmartHeaderFooterRecyclerview/blob/master/screenshot/hammerheadMRA58Nsonghang04252016170327.gif)
+![Renderings](https://github.com/songhanghang/SmartHeaderFooterRecyclerview/blob/master/screenshot/hammerheadMRA58Nsonghang04272016134831)
 
 ## Usage
 
