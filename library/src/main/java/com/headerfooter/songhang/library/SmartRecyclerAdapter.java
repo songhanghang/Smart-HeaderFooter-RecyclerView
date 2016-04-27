@@ -102,9 +102,15 @@ public class SmartRecyclerAdapter extends RecyclerViewAdapterWrapper {
         if (itemView != null) {
             //set StaggeredGridLayoutManager header & footer view
             if (layoutManager instanceof StaggeredGridLayoutManager) {
-                StaggeredGridLayoutManager.LayoutParams layoutParams = new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                layoutParams.setFullSpan(true);
-                itemView.setLayoutParams(layoutParams);
+                ViewGroup.LayoutParams targetParams = itemView.getLayoutParams();
+                StaggeredGridLayoutManager.LayoutParams StaggerLayoutParams;
+                if (targetParams !=  null) {
+                    StaggerLayoutParams = new StaggeredGridLayoutManager.LayoutParams(targetParams.width, targetParams.height);
+                } else {
+                    StaggerLayoutParams = new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                }
+                StaggerLayoutParams.setFullSpan(true);
+                itemView.setLayoutParams(StaggerLayoutParams);
             }
             return new RecyclerView.ViewHolder(itemView) {
             };

@@ -7,20 +7,23 @@ import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.headerfooter.songhang.library.SmartRecyclerAdapter;
 
-import org.w3c.dom.Text;
+import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    Random random = new Random(100);
     private RecyclerView recyclerView;
     private CardView headerView, footerView;
     private RecyclerView.Adapter adapter;
@@ -30,8 +33,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-
         adapter = new RecyclerView.Adapter<ViewHolder>() {
+
+            boolean isStaggered;
+
+            @Override
+            public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+                super.onAttachedToRecyclerView(recyclerView);
+                isStaggered = recyclerView.getLayoutManager() instanceof StaggeredGridLayoutManager;
+            }
+
             @Override
             public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
                 CardView cardView = new CardView(MainActivity.this);
@@ -52,7 +63,15 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onBindViewHolder(ViewHolder holder, int position) {
+                int[] heights = {300, 400, 500};
                 FrameLayout frameLayout = (FrameLayout) holder.itemView;
+                if (isStaggered) {
+                    ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
+                    int height = heights[random.nextInt(3)];
+                    lp.height = height;
+                    holder.itemView.setLayoutParams(lp);
+                    holder.itemView.setBackgroundColor(Color.argb(255, random.nextInt(255), random.nextInt(255), random.nextInt(255)));
+                }
                 ((TextView) frameLayout.getChildAt(0)).setText("positon: " + position);
             }
 
@@ -63,14 +82,42 @@ public class MainActivity extends AppCompatActivity {
         };
 
         initHeadAndFooterView();
-
-        GridLayoutManager linearLayoutManager = new GridLayoutManager(this, 3);
-        SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(adapter);
-        smartRecyclerAdapter.setFooterView(footerView);
-        smartRecyclerAdapter.setHeaderView(headerView);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(smartRecyclerAdapter);
+        showLine();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_line) {
+            showLine();
+            return true;
+        }
+
+        if (id == R.id.action_grid) {
+            showGrid();
+            return true;
+        }
+
+        if (id == R.id.action_staggered) {
+            showStagger();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 
     private void initHeadAndFooterView() {
         //header view
@@ -99,26 +146,40 @@ public class MainActivity extends AppCompatActivity {
         footerView.addView(footer);
     }
 
-    public void switchLayout(View view) {
-        if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
-            Toast.makeText(this, "LinearLayoutManager", Toast.LENGTH_SHORT).show();
-            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-            SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(adapter);
-            smartRecyclerAdapter.setFooterView(footerView);
-            smartRecyclerAdapter.setHeaderView(headerView);
+    private void showGrid() {
+        Toast.makeText(this, "GridLayoutManager", Toast.LENGTH_SHORT).show();
+        setTitle("GridLayoutManager");
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(adapter);
+        smartRecyclerAdapter.setFooterView(footerView);
+        smartRecyclerAdapter.setHeaderView(headerView);
 
-            recyclerView.setLayoutManager(linearLayoutManager);
-            recyclerView.setAdapter(smartRecyclerAdapter);
-        } else {
-            Toast.makeText(this, "GridLayoutManager", Toast.LENGTH_SHORT).show();
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-            SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(adapter);
-            smartRecyclerAdapter.setFooterView(footerView);
-            smartRecyclerAdapter.setHeaderView(headerView);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.setAdapter(smartRecyclerAdapter);
+    }
 
-            recyclerView.setLayoutManager(gridLayoutManager);
-            recyclerView.setAdapter(smartRecyclerAdapter);
-        }
+    private void showLine() {
+        Toast.makeText(this, "LinerLayoutManager", Toast.LENGTH_SHORT).show();
+        setTitle("LinearLayoutManager");
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(adapter);
+        smartRecyclerAdapter.setFooterView(footerView);
+        smartRecyclerAdapter.setHeaderView(headerView);
+
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(smartRecyclerAdapter);
+    }
+
+
+    private void showStagger() {
+        Toast.makeText(this, "StaggeredGridLayoutManager", Toast.LENGTH_SHORT).show();
+        setTitle("StaggeredGridLayoutManager");
+        StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(4, StaggeredGridLayoutManager.VERTICAL);
+        SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(adapter);
+        smartRecyclerAdapter.setFooterView(footerView);
+        smartRecyclerAdapter.setHeaderView(headerView);
+        recyclerView.setLayoutManager(staggeredGridLayoutManager);
+        recyclerView.setAdapter(smartRecyclerAdapter);
     }
 
     private class ViewHolder extends RecyclerView.ViewHolder {
