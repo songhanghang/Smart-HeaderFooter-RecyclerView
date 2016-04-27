@@ -4,7 +4,7 @@ Easy implements Header &amp; Footer view, With least modification
 ## feature
 Easy implements Header &amp; Footer view, With least modification
 
-非常简单的实现Recyclerview添加HeaderView和FooterView，
+非常方便的实现Recyclerview添加HeaderView和FooterView，
 * 1, No need change anyting with your target adapter
 
      不需要修改Target Adapter
@@ -24,9 +24,10 @@ Easy implements Header &amp; Footer view, With least modification
 ## usage
 
 ```java
-            GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-            SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(targetAdapter, gridLayoutManager);
-            smartRecyclerAdapter.setFooterView(footerView);
-            smartRecyclerAdapter.setHeaderView(headerView);
-            recyclerView.setAdapter(smartRecyclerAdapter);
+      RecyclerView.Adapter targetAdapter = new RecyclerView.Adapter() { ... };
+      GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+      SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(targetAdapter, gridLayoutManager);
+      smartRecyclerAdapter.setFooterView(footerView);
+      smartRecyclerAdapter.setHeaderView(headerView);
+      recyclerView.setAdapter(smartRecyclerAdapter);
 ```
