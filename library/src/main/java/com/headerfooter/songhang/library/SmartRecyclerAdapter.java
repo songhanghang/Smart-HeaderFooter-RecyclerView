@@ -3,6 +3,7 @@ package com.headerfooter.songhang.library;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,11 +14,12 @@ public class SmartRecyclerAdapter extends RecyclerViewAdapterWrapper {
     public static final int TYPE_HEADER = 111;
     public static final int TYPE_FOOTER = 112;
 
+    private RecyclerView.LayoutManager layoutManager;
+
     private View headerView, footerView;
 
-    public SmartRecyclerAdapter(@NonNull RecyclerView.Adapter targetAdapter, @NonNull RecyclerView.LayoutManager layoutManager) {
+    public SmartRecyclerAdapter(@NonNull RecyclerView.Adapter targetAdapter) {
         super(targetAdapter);
-        setGirdSpanSize(layoutManager);
     }
 
     public void setHeaderView(View view) {
@@ -40,7 +42,7 @@ public class SmartRecyclerAdapter extends RecyclerViewAdapterWrapper {
         getWrappedAdapter().notifyDataSetChanged();
     }
 
-    private void setGirdSpanSize(RecyclerView.LayoutManager layoutManager) {
+    private void setGridHeaderFooter(RecyclerView.LayoutManager layoutManager) {
         if (layoutManager instanceof GridLayoutManager) {
             final GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
             gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -66,6 +68,13 @@ public class SmartRecyclerAdapter extends RecyclerViewAdapterWrapper {
     }
 
     @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        layoutManager = recyclerView.getLayoutManager();
+        setGridHeaderFooter(layoutManager);
+    }
+
+    @Override
     public int getItemCount() {
         return super.getItemCount() + (hasHeader() ? 1 : 0) + (hasFooter() ? 1 : 0);
     }
@@ -79,18 +88,25 @@ public class SmartRecyclerAdapter extends RecyclerViewAdapterWrapper {
         if (hasFooter() && position == getItemCount() - 1) {
             return TYPE_FOOTER;
         }
-        return super.getItemViewType(hasHeader() ? position - 1: position);
+        return super.getItemViewType(hasHeader() ? position - 1 : position);
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View itemView = null;
         if (viewType == TYPE_HEADER) {
-            return new RecyclerView.ViewHolder(headerView) {
-            };
+            itemView = headerView;
+        } else if (viewType == TYPE_FOOTER) {
+            itemView = footerView;
         }
-
-        if (viewType == TYPE_FOOTER) {
-            return new RecyclerView.ViewHolder(footerView) {
+        if (itemView != null) {
+            //set StaggeredGridLayoutManager header & footer view
+            if (layoutManager instanceof StaggeredGridLayoutManager) {
+                StaggeredGridLayoutManager.LayoutParams layoutParams = new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                layoutParams.setFullSpan(true);
+                itemView.setLayoutParams(layoutParams);
+            }
+            return new RecyclerView.ViewHolder(itemView) {
             };
         }
         return super.onCreateViewHolder(parent, viewType);
@@ -99,6 +115,7 @@ public class SmartRecyclerAdapter extends RecyclerViewAdapterWrapper {
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
         if (getItemViewType(position) == TYPE_HEADER || getItemViewType(position) == TYPE_FOOTER) {
+            //if you need get header & footer state , do here
             return;
         }
         super.onBindViewHolder(holder, hasHeader() ? position - 1 : position);

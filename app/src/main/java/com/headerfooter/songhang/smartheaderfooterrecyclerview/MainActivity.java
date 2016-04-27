@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         initHeadAndFooterView();
 
         GridLayoutManager linearLayoutManager = new GridLayoutManager(this, 3);
-        SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(adapter, linearLayoutManager);
+        SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(adapter);
         smartRecyclerAdapter.setFooterView(footerView);
         smartRecyclerAdapter.setHeaderView(headerView);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         if (recyclerView.getLayoutManager() instanceof GridLayoutManager) {
             Toast.makeText(this, "LinearLayoutManager", Toast.LENGTH_SHORT).show();
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-            SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(adapter, linearLayoutManager);
+            SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(adapter);
             smartRecyclerAdapter.setFooterView(footerView);
             smartRecyclerAdapter.setHeaderView(headerView);
 
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "GridLayoutManager", Toast.LENGTH_SHORT).show();
             GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-            SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(adapter, gridLayoutManager);
+            SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(adapter);
             smartRecyclerAdapter.setFooterView(footerView);
             smartRecyclerAdapter.setHeaderView(headerView);
 
