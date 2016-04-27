@@ -30,8 +30,6 @@ Easy implements Header &amp; Footer view, Support Liner、Grid、StaggeredLayout
 ```
 
 ## Screenshot
-![Renderings](https://github.com/songhanghang/Smart-HeaderFooter-Recyclerview/blob/master/screenshot/hammerheadMRA58Nsonghang04272016140620.png)
-![Renderings](https://github.com/songhanghang/Smart-HeaderFooter-Recyclerview/blob/master/screenshot/hammerheadMRA58Nsonghang04272016140630.png)
-![Renderings](https://github.com/songhanghang/Smart-HeaderFooter-Recyclerview/blob/master/screenshot/hammerheadMRA58Nsonghang04272016140643.png)
+![Renderings](https://github.com/songhanghang/Smart-HeaderFooter-RecyclerView/blob/master/screenshot/screen.png)
 ![Renderings](https://github.com/songhanghang/Smart-HeaderFooter-Recyclerview/blob/master/screenshot/hammerheadMRA58Nsonghang04272016134831.gif)
 
