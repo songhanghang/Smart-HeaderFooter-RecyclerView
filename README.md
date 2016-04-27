@@ -19,7 +19,7 @@ Easy implements Header &amp; Footer view, Support Liner、Grid、StaggeredLayout
  
      支持 LinearLayoutManager & GridLayoutManager & StaggeredLayoutManager 三种布局管理器
 
-* 5, Not dependencies code build order
+* 5, No dependencies code build order
  
      不依赖RecyclerView设置顺序 (eg: 不需要提前设置LayoutManager)
 
