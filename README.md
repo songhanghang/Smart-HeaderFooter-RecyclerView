@@ -22,9 +22,26 @@ Easy implements Header &amp; Footer view, Support Liner、Grid、StaggeredLayout
 * 5, No dependencies code build order
  
      不依赖RecyclerView设置顺序 (eg: 不需要提前设置LayoutManager)
+## Gradle Dependency (only 18.8KB)
+Add this in your root `build.gradle` file (**not** your module `build.gradle` file):
+
+```gradle
+allprojects {
+	repositories {
+		...
+		maven { url 'https://dl.bintray.com/songhanghang/maven/' }
+	}
+}
+```
+
+Then, add the library to your project `build.gradle`
+```gradle
+dependencies {
+    'com.songhang:smart-headerfooter-recyclerview:1.0.0'
+}
+```
 
 ## Usage
-
 ```java
       RecyclerView.Adapter targetAdapter = new RecyclerView.Adapter() { ... };
       SmartRecyclerAdapter smartRecyclerAdapter = new SmartRecyclerAdapter(targetAdapter);
