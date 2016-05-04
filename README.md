@@ -2,7 +2,7 @@
 
 Easy implements Header &amp; Footer view, Support Liner、Grid、StaggeredLayoutManager, With least modification
 
-非常方便的实现Recyclerview添加HeaderView和FooterView，
+非常方便的实现Recyclerview添加HeaderView和FooterView, 支持 LinearLayoutManager & GridLayoutManager & StaggeredLayoutManager
 
 ## Feature
 
@@ -19,6 +19,10 @@ Easy implements Header &amp; Footer view, Support Liner、Grid、StaggeredLayout
  
      支持 LinearLayoutManager & GridLayoutManager & StaggeredLayoutManager 三种布局管理器
 
+* 5, No dependencies code build order
+ 
+     不依赖RecyclerView设置顺序 (eg: 不需要提前设置LayoutManager)
+
 ## Usage
 
 ```java
@@ -30,8 +34,6 @@ Easy implements Header &amp; Footer view, Support Liner、Grid、StaggeredLayout
 ```
 
 ## Screenshot
-![Renderings](https://github.com/songhanghang/Smart-HeaderFooter-Recyclerview/blob/master/screenshot/hammerheadMRA58Nsonghang04272016140620.png)
-![Renderings](https://github.com/songhanghang/Smart-HeaderFooter-Recyclerview/blob/master/screenshot/hammerheadMRA58Nsonghang04272016140630.png)
-![Renderings](https://github.com/songhanghang/Smart-HeaderFooter-Recyclerview/blob/master/screenshot/hammerheadMRA58Nsonghang04272016140643.png)
+![Renderings](https://github.com/songhanghang/Smart-HeaderFooter-RecyclerView/blob/master/screenshot/screen.png)
 ![Renderings](https://github.com/songhanghang/Smart-HeaderFooter-Recyclerview/blob/master/screenshot/hammerheadMRA58Nsonghang04272016134831.gif)
 
