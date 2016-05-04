@@ -23,7 +23,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    Random random = new Random(100);
+    private Random random = new Random(100);
     private RecyclerView recyclerView;
     private CardView headerView, footerView;
     private RecyclerView.Adapter adapter;
