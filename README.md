@@ -22,7 +22,9 @@ Easy implements Header &amp; Footer view, Support Liner、Grid、StaggeredLayout
 * 5, No dependencies code build order
  
      不依赖RecyclerView设置顺序 (eg: 不需要提前设置LayoutManager)
+
 ## Gradle Dependency (only 18.8KB)
+
 Add this in your root `build.gradle` file (**not** your module `build.gradle` file):
 
 ```gradle
