@@ -1,6 +1,6 @@
 # SmartHeaderFooterRecyclerview
 
-Easy implements Header &amp; Footer view, Support Liner、Grid、StaggeredLayoutManager, With least modify
+Easy implements Header &amp; Footer view, Support Liner、Grid、StaggeredLayoutManager, With least modify！
 
 非常方便的实现Recyclerview添加HeaderView和FooterView, 支持 LinearLayoutManager & GridLayoutManager & StaggeredLayoutManager
 
