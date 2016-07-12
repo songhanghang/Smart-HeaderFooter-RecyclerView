@@ -28,7 +28,7 @@ Easy implements Header &amp; Footer view, Support Liner、Grid、StaggeredLayout
 Add the library to your project `build.gradle`
 ```gradle
 dependencies {
-    'com.songhang:smart-headerfooter-recyclerview:1.0.0'
+    compile 'com.songhang:smart-headerfooter-recyclerview:1.0.0'
 }
 ```
 
