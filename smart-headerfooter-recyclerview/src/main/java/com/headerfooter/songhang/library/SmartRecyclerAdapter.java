@@ -24,22 +24,22 @@ public class SmartRecyclerAdapter extends RecyclerViewAdapterWrapper {
 
     public void setHeaderView(View view) {
         headerView = view;
-        getWrappedAdapter().notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 
     public void removeHeaderView() {
         headerView = null;
-        getWrappedAdapter().notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 
     public void setFooterView(View view) {
         footerView = view;
-        getWrappedAdapter().notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 
     public void removeFooterView() {
         footerView = null;
-        getWrappedAdapter().notifyDataSetChanged();
+        notifyDataSetChanged();
     }
 
     private void setGridHeaderFooter(RecyclerView.LayoutManager layoutManager) {
