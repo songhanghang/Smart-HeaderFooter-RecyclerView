@@ -12,25 +12,36 @@ public class RecyclerViewAdapterWrapper extends RecyclerView.Adapter {
     public RecyclerViewAdapterWrapper(RecyclerView.Adapter wrapped) {
         super();
         this.wrapped = wrapped;
-        this.wrapped.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+
+        super.registerAdapterDataObserver(new RecyclerView.AdapterDataObserver() {
+            @Override
             public void onChanged() {
-                notifyDataSetChanged();
+                getWrappedAdapter().notifyDataSetChanged();
             }
 
+            @Override
+            public void onItemRangeChanged(int positionStart, int itemCount, Object payload) {
+                getWrappedAdapter().notifyItemRangeChanged(positionStart, itemCount, payload);
+            }
+
+            @Override
             public void onItemRangeChanged(int positionStart, int itemCount) {
-                notifyItemRangeChanged(positionStart, itemCount);
+                getWrappedAdapter().notifyItemRangeChanged(positionStart, itemCount);
             }
 
+            @Override
             public void onItemRangeInserted(int positionStart, int itemCount) {
-                notifyItemRangeInserted(positionStart, itemCount);
+                getWrappedAdapter().notifyItemRangeChanged(positionStart, itemCount);
             }
 
+            @Override
             public void onItemRangeRemoved(int positionStart, int itemCount) {
-                notifyItemRangeRemoved(positionStart, itemCount);
+                getWrappedAdapter().notifyItemRangeRemoved(positionStart, itemCount);
             }
 
+            @Override
             public void onItemRangeMoved(int fromPosition, int toPosition, int itemCount) {
-                notifyItemMoved(fromPosition, toPosition);
+                getWrappedAdapter().notifyItemMoved(fromPosition, toPosition);
             }
         });
     }
