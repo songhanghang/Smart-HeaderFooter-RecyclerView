@@ -36,4 +36,4 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.2.1'
 }
 
-apply from: '/Users/songhang/android_demo/SmartHeaderFooterRecyclerview/bintray.gradle'
+apply from: '../bintray.gradle'

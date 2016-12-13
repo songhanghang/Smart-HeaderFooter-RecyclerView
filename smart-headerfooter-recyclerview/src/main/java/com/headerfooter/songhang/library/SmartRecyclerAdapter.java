@@ -11,8 +11,8 @@ import android.view.ViewGroup;
  * Created by songhang on 16/4/25.
  */
 public class SmartRecyclerAdapter extends RecyclerViewAdapterWrapper {
-    public static final int TYPE_HEADER = 111;
-    public static final int TYPE_FOOTER = 112;
+    public static final int TYPE_HEADER = -1;
+    public static final int TYPE_FOOTER = -2;
 
     private RecyclerView.LayoutManager layoutManager;
 
@@ -104,7 +104,7 @@ public class SmartRecyclerAdapter extends RecyclerViewAdapterWrapper {
             if (layoutManager instanceof StaggeredGridLayoutManager) {
                 ViewGroup.LayoutParams targetParams = itemView.getLayoutParams();
                 StaggeredGridLayoutManager.LayoutParams StaggerLayoutParams;
-                if (targetParams !=  null) {
+                if (targetParams != null) {
                     StaggerLayoutParams = new StaggeredGridLayoutManager.LayoutParams(targetParams.width, targetParams.height);
                 } else {
                     StaggerLayoutParams = new StaggeredGridLayoutManager.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
