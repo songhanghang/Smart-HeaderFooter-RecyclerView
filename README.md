@@ -1,4 +1,4 @@
-# SmartHeaderFooterRecyclerview
+# SmartHeaderFooterRecyclerView
 
 Easy implements Header &amp; Footer view, Support Liner、Grid、StaggeredLayoutManager, With least modify！
 
